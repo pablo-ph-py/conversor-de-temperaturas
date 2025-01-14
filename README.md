@@ -1,18 +1,46 @@
-# Convertidor de Temperaturas
+# Conversor Universal
 
-Este es un sencillo programa en Python que convierte temperaturas entre tres unidades: **Celsius (C)**, **Fahrenheit (F)** y **Kelvin (K)**.
+¡Bienvenido a **Conversor Universal**! 🎉  
+Este es un programa versátil que te permite convertir temperaturas y monedas en tiempo real. En el futuro, planeamos añadir más funciones, como conversores de medidas y otras utilidades para simplificar tus cálculos diarios.  
 
-## Características
+---
 
-- Convierte entre Celsius, Fahrenheit y Kelvin.
-- Permite al usuario ingresar el valor de la temperatura, la unidad de origen y la unidad de destino.
-- Maneja errores cuando se ingresan unidades no válidas.
+## 🚀 Funcionalidades Actuales
 
-## Uso
+### 🌡️ Conversor de Temperaturas
+Convierte entre las principales unidades de temperatura:  
+- **Celsius (C)**  
+- **Fahrenheit (F)**  
+- **Kelvin (K)**  
 
-1. Clona este repositorio o descarga el archivo `convertidor_temperatura.py`.
-2. Abre una terminal y navega a la carpeta donde se encuentra el archivo.
-3. Ejecuta el programa con el siguiente comando:
+### 💱 Conversor de Monedas (En Tiempo Real)
+Convierte monedas entre diferentes divisas usando tasas de cambio en tiempo real obtenidas a través de una API externa.  
 
-   ```bash
-   python convertidor_temperatura.py
+---
+
+## 🔮 Funcionalidades Planeadas
+- Conversor de medidas (longitud, peso, volumen, etc.).  
+- Soporte para conversores de tiempo (segundos, minutos, horas).  
+- Cálculo de datos financieros, como intereses simples o compuestos.  
+
+---
+## ⚙️ Requisitos
+
+- Python 3.7 o superior.
+- Conexión a Internet para el conversor de monedas.
+
+
+## 🛠️ Instalación
+```bash
+#1. **Clona el repositorio**:
+   
+   git clone https://github.com/tuusuario/conversor-universal.git
+   cd conversor-universal
+
+#2. **Asegúrate de tener Python instalado y usa el siguiente comando**:
+
+   pip install requests
+
+#3. **Ejecuta el programa**:
+
+   python main.py
