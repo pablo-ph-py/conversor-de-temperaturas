@@ -1,7 +1,7 @@
 # Conversor Universal
 
 ¡Bienvenido a **Conversor Universal**! 🎉  
-Este es un programa versátil que te permite convertir temperaturas y monedas en tiempo real. En el futuro, planeamos añadir más funciones, como conversores de medidas y otras utilidades para simplificar tus cálculos diarios.  
+Este es un programa versátil que te permite convertir temperaturas y monedas en tiempo real. En el futuro, se planea añadir más funciones, como conversores de medidas y otras utilidades para simplificar tus cálculos diarios.  
 
 ---
 
