@@ -34,7 +34,7 @@ Convierte monedas entre diferentes divisas usando tasas de cambio en tiempo real
 ```bash
 #1. **Clona el repositorio**:
    
-   git clone https://github.com/tuusuario/conversor-universal.git
+   git clone https://github.com/pablo-ph-py/conversor-universal.git
    cd conversor-universal
 
 #2. **Asegúrate de tener Python instalado y usa el siguiente comando**:
