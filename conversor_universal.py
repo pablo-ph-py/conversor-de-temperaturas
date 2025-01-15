@@ -36,16 +36,31 @@ def comprobar_numeros(valor):
 
 
 # Conversor de Monedas
-def obtener_tasa_cambio(moneda_origen, moneda_destino):
-    # Sustituye 'TU_API_KEY' por tu clave de API obtenida de ExchangeRate-API o similar.
-    API_URL = f"https://v6.exchangerate-api.com/v6/52ebb3bb9d4d1aa363391b50/pair/{moneda_origen}/{moneda_destino}"
-    respuesta = requests.get(API_URL)
+MONEDAS_ACEPTADAS = ["USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD"]
 
-    if respuesta.status_code == 200:
+
+def validar_moneda(moneda):
+    return moneda in MONEDAS_ACEPTADAS
+
+
+def obtener_tasa_cambio(moneda_origen, moneda_destino):
+    if not validar_moneda(moneda_origen) or not validar_moneda(moneda_destino):
+        print(f"Error: Moneda no válida. Monedas aceptadas: {', '.join(MONEDAS_ACEPTADAS)}")
+        return None
+
+    API_URL = f"https://v6.exchangerate-api.com/v6/52ebb3bb9d4d1aa363391b50/pair/{moneda_origen}/{moneda_destino}"
+    try:
+        respuesta = requests.get(API_URL)
+        respuesta.raise_for_status()
         datos = respuesta.json()
-        return datos["conversion_rate"]
-    else:
-        print("Error al obtener los datos de conversión. Revisa la API.")
+
+        if datos["result"] == "success":
+            return datos["conversion_rate"]
+        else:
+            print(f"Error en la API: {datos.get('error-type', 'Error desconocido')}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con la API: {e}")
         return None
 
 
@@ -56,6 +71,7 @@ def convertir_moneda(cantidad, moneda_origen, moneda_destino):
     return cantidad * tasa
 
 
+# Función principal
 def main():
     print("Bienvenido al convertidor de Temperaturas y Monedas")
     print("Este programa convierte temperaturas y monedas en tiempo real.")
@@ -102,8 +118,15 @@ def main():
                 cantidad = input("Introduce una cantidad válida: ").strip()
             cantidad = float(cantidad)
 
-            moneda_origen = input("Introduce la moneda de origen (Ej.: USD, EUR): ").upper().strip()
-            moneda_destino = input("Introduce la moneda de destino (Ej.: USD, EUR): ").upper().strip()
+            moneda_origen = input(f"Introduce la moneda de origen (Ej.: {', '.join(MONEDAS_ACEPTADAS)}): ").upper().strip()
+            while not validar_moneda(moneda_origen):
+                print(f"Moneda de origen no válida. Monedas aceptadas: {', '.join(MONEDAS_ACEPTADAS)}")
+                moneda_origen = input("Introduce una moneda válida: ").upper().strip()
+
+            moneda_destino = input(f"Introduce la moneda de destino (Ej.: {', '.join(MONEDAS_ACEPTADAS)}): ").upper().strip()
+            while not validar_moneda(moneda_destino):
+                print(f"Moneda de destino no válida. Monedas aceptadas: {', '.join(MONEDAS_ACEPTADAS)}")
+                moneda_destino = input("Introduce una moneda válida: ").upper().strip()
 
             resultado = convertir_moneda(cantidad, moneda_origen, moneda_destino)
             if resultado is not None:
@@ -120,4 +143,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
